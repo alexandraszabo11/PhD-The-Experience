@@ -919,3 +919,74 @@
 </script>
 </body>
 </html>
+<script>
+  (function() {
+    function initArchive() {
+      const container = document.getElementById("episodes-container");
+      const loadMoreBtn = document.getElementById("load-more-btn");
+      const loadMoreWrap = document.querySelector(".load-more-wrap");
+      const sortSelect = document.getElementById("sort-select");
+
+      if (!container || !loadMoreBtn || !sortSelect) return;
+
+      // Extract raw episode nodes once
+      const episodes = Array.from(container.children);
+      const BATCH_SIZE = 6;
+      let visibleCount = BATCH_SIZE;
+
+      function render() {
+        const isOldest = sortSelect.value === "oldest";
+        
+        // Clone array to prevent reference loss
+        let sorted = episodes.slice();
+        if (isOldest) {
+          sorted.reverse();
+        }
+
+        // Apply display directly with highest specificity
+        sorted.forEach((item, index) => {
+          if (index < visibleCount) {
+            item.style.setProperty("display", "flex", "important");
+          } else {
+            item.style.setProperty("display", "none", "important");
+          }
+        });
+
+        // Re-append items in new sorted sequence
+        sorted.forEach(item => container.appendChild(item));
+
+        // Ensure container controls stay visible
+        if (loadMoreWrap) loadMoreWrap.style.setProperty("display", "block", "important");
+
+        // Toggle button visibility based on remaining episodes
+        if (visibleCount >= episodes.length) {
+          loadMoreBtn.style.setProperty("display", "none", "important");
+        } else {
+          loadMoreBtn.style.setProperty("display", "inline-block", "important");
+          loadMoreBtn.textContent = `Show More Episodes (${episodes.length - visibleCount} left)`;
+        }
+      }
+
+      // Event listeners
+      loadMoreBtn.onclick = function(e) {
+        e.preventDefault();
+        visibleCount += BATCH_SIZE;
+        render();
+      };
+
+      sortSelect.onchange = function() {
+        visibleCount = BATCH_SIZE;
+        render();
+      };
+
+      // Initial execution
+      render();
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initArchive);
+    } else {
+      initArchive();
+    }
+  })();
+</script>
