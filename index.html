@@ -70,7 +70,28 @@
   <!-- ARCHIVE -->
 <section id="archive" class="section archive wrap">
   <p class="section-label">The archive</p>
-  <h2>Browse past conversations</h2>
+  
+  <div style="display: flex; justify-content: space-between; align-items: center; wrap: flex-wrap; gap: 1rem; margin-bottom: 1.5rem;">
+    <h2>Browse past conversations</h2>
+    <!-- Controls for Sorting -->
+    <div class="archive-controls">
+      <label for="sort-select" style="font-size: 0.9rem; margin-right: 0.5rem;">Sort by:</label>
+      <select id="sort-select" style="padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid #ccc; cursor: pointer;">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+      </select>
+    </div>
+  </div>
+
+  <ol class="index-list" id="episodes-container">
+    <!-- ALL YOUR <li class="index-entry"> ITEMS STAY HERE EXACTLY AS THEY ARE -->
+  </ol>
+
+  <!-- Load More Button -->
+  <div style="text-align: center; margin-top: 2rem;">
+    <button id="load-more-btn" class="btn btn-ghost" style="cursor: pointer;">Show More Episodes</button>
+  </div>
+</section>
 
   <ol class="index-list">
 
