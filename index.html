@@ -23,8 +23,8 @@
       <a href="#latest">Latest</a>
       <a href="#archive">Episodes</a>
       <a href="#about">About</a>
-      <a href="#listen">Listen</a>
       <a href="#share">Share</a>
+      <a href="#newsletter">Newsletter</a>
     </nav>
     <a class="btn btn-small" href="https://open.spotify.com/show/7Hn7ZheccpG5eLPQE6cS3m" target="_blank" rel="noopener">Follow the show</a>
   </div>
@@ -46,6 +46,7 @@
     </div>
 
     <div class="hero-art" aria-hidden="true">
+      <div class="hero-glow"></div>
       <div class="card-stack">
         <div class="stack-card stack-card--back"></div>
         <div class="stack-card stack-card--mid"></div>
@@ -158,16 +159,24 @@
         <p>PhD: The Experience guides listeners through the multifaceted journey of doctoral study. Through her own experiences and conversations with fellow researchers and academics, Alexandra offers a comprehensive look at the challenges and triumphs of pursuing a PhD — and the practical advice that rarely makes it into a supervision meeting.</p>
         <p>The goal is a supportive community where researchers can learn from one another and trade the tips nobody tells you at orientation.</p>
         <a class="btn btn-ghost" href="https://instagram.com/phd.theexperience" target="_blank" rel="noopener">Follow along on Instagram →</a>
+
+        <div class="me-block">
+          <h3>A bit about me</h3>
+          <p>I was born in Romania, raised in Greece, and moved to Germany at sixteen — I've always been drawn to connecting with people, across languages and across cultures. That instinct followed me straight into my PhD.</p>
+          <p>My first year was hard in ways I didn't expect, and it showed me how little support and honest information actually exists for PhD students. It's not just me — in Nature's global survey of over 6,000 PhD students, 36% reported seeking help for anxiety or depression caused by their doctoral studies. I started this podcast to close that gap: real conversations and practical advice, made easy to find, before people reach a breaking point.</p>
+          <p>Outside the lab and the mic, you'll usually find me near the sea, out in nature, with dogs, or spending time with my friends and family — the things that keep me steady through all of it.</p>
+        </div>
       </div>
     </div>
   </section>
+
   <!-- SHARE YOUR STORY -->
   <section id="share" class="section share wrap">
     <p class="section-label">Got a story?</p>
     <h2>Share it on the show</h2>
     <p class="share-lede">Finished your PhD, made a career leap, or lived through something worth talking about? Tell me a bit about it — I read every submission myself.</p>
 
-    <form class="story-form" action="https://formspree.io/f/https://formspree.io/f/mwleznao" method="POST">
+    <form class="story-form" action="https://formspree.io/f/mwleznao" method="POST">
       <div class="form-row">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required>
@@ -183,6 +192,18 @@
       <button type="submit" class="btn btn-primary">Send my story</button>
     </form>
   </section>
+
+  <!-- NEWSLETTER -->
+  <section id="newsletter" class="section newsletter wrap">
+    <p class="section-label">Stay in the loop</p>
+    <h2>A monthly note, no algorithm required</h2>
+    <p class="share-lede">New episodes, behind-the-scenes thoughts, and things I'm reading — once a month, straight to your inbox.</p>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/alexandrasz11" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/alexandrasz11', 'popupwindow')" class="newsletter-form">
+      <input type="email" name="email" placeholder="you@email.com" required>
+      <input type="submit" value="Subscribe" class="btn btn-primary">
+    </form>
+  </section>
+
 </main>
 
 <footer class="site-footer">
