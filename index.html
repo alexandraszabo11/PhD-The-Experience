@@ -67,16 +67,16 @@
     </div>
   </section>
 
-  <!-- ARCHIVE -->
+ <!-- ARCHIVE SECTION -->
 <section id="archive" class="section archive wrap">
   <p class="section-label">The archive</p>
   
-  <div style="display: flex; justify-content: space-between; align-items: center; wrap: flex-wrap; gap: 1rem; margin-bottom: 1.5rem;">
+  <div class="archive-header-row">
     <h2>Browse past conversations</h2>
     <!-- Controls for Sorting -->
     <div class="archive-controls">
-      <label for="sort-select" style="font-size: 0.9rem; margin-right: 0.5rem;">Sort by:</label>
-      <select id="sort-select" style="padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid #ccc; cursor: pointer;">
+      <label for="sort-select" class="sort-label">Sort by:</label>
+      <select id="sort-select" class="sort-dropdown">
         <option value="newest">Newest first</option>
         <option value="oldest">Oldest first</option>
       </select>
@@ -84,16 +84,6 @@
   </div>
 
   <ol class="index-list" id="episodes-container">
-    <!-- ALL YOUR <li class="index-entry"> ITEMS STAY HERE EXACTLY AS THEY ARE -->
-  </ol>
-
-  <!-- Load More Button -->
-  <div style="text-align: center; margin-top: 2rem;">
-    <button id="load-more-btn" class="btn btn-ghost" style="cursor: pointer;">Show More Episodes</button>
-  </div>
-</section>
-
-  <ol class="index-list">
 
       <li class="index-entry">
         <span class="tag-mono">TRAILER</span>
@@ -260,7 +250,7 @@
       <li class="index-entry">
         <span class="tag-mono">S3·19 I</span>
         <div class="entry-body">
-          <a class="entry-title" href="https://open.spotify.com/episode/2tUVvDTbKDFGHsdQWMZTyX" target="_blank" rel="noopener">S3 - Episode 19 Part II: Becoming a Scientist: The Academic Road</a>
+          <a class="entry-title" href="https://open.spotify.com/episode/2tUVvDTbKDFGHsdQWMZTyX" target="_blank" rel="noopener">S3 - Episode 19 Part I: Becoming a Scientist: The Academic Road</a>
           <p class="entry-guest">Dr. Perianen · 44 min</p>
           <p class="entry-quote">For this episode I sat down with Dr. Perianen (Krishna), a postdoctoral researcher in Neuroscience.</p>
         </div>
@@ -699,7 +689,115 @@
       </li>
 
   </ol>
+
+  <!-- Load More Button -->
+  <div class="load-more-wrap">
+    <button id="load-more-btn" type="button" class="load-more-button">Show More Episodes</button>
+  </div>
 </section>
+
+<!-- Custom Styles for Controls and Button -->
+<style>
+  .archive-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .sort-label {
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+  }
+  .sort-dropdown {
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #111;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .load-more-wrap {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+  .load-more-button {
+    background-color: transparent;
+    color: currentColor;
+    border: 1px solid currentColor;
+    padding: 0.75rem 1.75rem;
+    border-radius: 9999px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .load-more-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
+  }
+</style>
+
+<!-- Script logic directly attached -->
+<script>
+  (function() {
+    function initArchive() {
+      const container = document.getElementById("episodes-container");
+      const loadMoreBtn = document.getElementById("load-more-btn");
+      const sortSelect = document.getElementById("sort-select");
+
+      if (!container || !loadMoreBtn || !sortSelect) return;
+
+      const episodes = Array.from(container.querySelectorAll(".index-entry"));
+      const ITEMS_PER_PAGE = 6;
+      let visibleCount = ITEMS_PER_PAGE;
+
+      function renderEpisodes() {
+        const isOldestFirst = sortSelect.value === "oldest";
+        const sortedEpisodes = [...episodes];
+        
+        if (isOldestFirst) {
+          sortedEpisodes.reverse();
+        }
+
+        container.innerHTML = "";
+        sortedEpisodes.forEach((ep, index) => {
+          if (index < visibleCount) {
+            ep.style.display = "";
+            container.appendChild(ep);
+          }
+        });
+
+        if (visibleCount >= episodes.length) {
+          loadMoreBtn.style.display = "none";
+        } else {
+          loadMoreBtn.style.display = "inline-block";
+        }
+      }
+
+      loadMoreBtn.addEventListener("click", function() {
+        visibleCount += ITEMS_PER_PAGE;
+        renderEpisodes();
+      });
+
+      sortSelect.addEventListener("change", function() {
+        visibleCount = ITEMS_PER_PAGE;
+        renderEpisodes();
+      });
+
+      renderEpisodes();
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initArchive);
+    } else {
+      initArchive();
+    }
+  })();
+</script>
+  
   <!-- LISTEN EVERYWHERE / full embed -->
   <section id="listen" class="section listen wrap">
     <p class="section-label">All episodes</p>
