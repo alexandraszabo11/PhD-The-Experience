@@ -265,3 +265,29 @@ h1 em{
 /* ---------- Scroll reveal ---------- */
 .reveal{ opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.is-visible{ opacity: 1; transform: none; }
+/* Share Your Story form */
+.share-lede{ color: var(--ink-soft); max-width: 60ch; margin-bottom: 32px; }
+.story-form{ max-width: 520px; display: flex; flex-direction: column; gap: 20px; }
+.form-row{ display: flex; flex-direction: column; gap: 8px; }
+.form-row label{
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+.form-row input, .form-row textarea{
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-card);
+  color: var(--ink);
+  resize: vertical;
+}
+.form-row input:focus-visible, .form-row textarea:focus-visible{
+  outline: 2px solid var(--teal);
+  outline-offset: 1px;
+}
+.story-form .btn{ align-self: flex-start; border: none; cursor: pointer; }
